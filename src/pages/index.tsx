@@ -1,21 +1,11 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 import Layout from "../components/layout"
 import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
 import SEOHead from "../components/head"
 
-interface HomepageProps {
-  data: {
-    homepage: {
-      id: string
-      title: string
-      description: string
-      image: { id: string; url: string }
-      blocks: sections.HomepageBlock[]
-    }
-  }
-}
+type HomepageProps = PageProps<Queries.HomePageQuery>;
 
 export default function Homepage(props: HomepageProps) {
   const { homepage } = props.data
@@ -35,7 +25,7 @@ export const Head = (props: HomepageProps) => {
   return <SEOHead {...homepage} />
 }
 export const query = graphql`
-  {
+  query HomePage {
     homepage {
       id
       title

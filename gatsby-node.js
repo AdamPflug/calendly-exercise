@@ -345,7 +345,6 @@ exports.createSchemaCustomization = async ({ actions }) => {
   // CMS-specific types for Homepage
   actions.createTypes(/* GraphQL */ `
     type ContentfulHomepageLink implements Node & HomepageLink @dontInfer {
-      id: ID!
       href: String
       text: String
     }

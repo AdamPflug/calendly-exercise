@@ -1,23 +1,12 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, PageProps} from "gatsby"
 import Layout from "../components/layout"
 import { Container, Box, Heading } from "../components/ui"
 import SEOHead from "../components/head"
 
-interface PageProps {
-  data: {
-    page: {
-      id: string
-      title: string
-      slug: string
-      description: string
-      image: { id: string; url: string }
-      html: string
-    }
-  }
-}
+type Props = PageProps<Queries.PageContentQuery>;
 
-export default function Page(props: PageProps) {
+export default function Page(props: Props) {
   const { page } = props.data
 
   return (
@@ -35,7 +24,7 @@ export default function Page(props: PageProps) {
     </Layout>
   )
 }
-export const Head = (props: PageProps) => {
+export const Head = (props: Props) => {
   const { page } = props.data
   return <SEOHead {...page} />
 }

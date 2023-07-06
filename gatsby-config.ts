@@ -1,16 +1,19 @@
+import type { GatsbyConfig } from "gatsby";
+
 // support for .env, .env.development, and .env.production
 require("dotenv").config()
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-module.exports = {
+const config: GatsbyConfig  = {
   siteMetadata: {
     siteUrl: "https://gatsbycontentfulhomepage.gatsbyjs.io/",
     title: "Gatsby Contentful Homepage Starter",
     author: `Gatsby`,
     description: "A Gatsby Starter for building homepages with Contentful",
   },
+  graphqlTypegen: true,
   plugins: [
     {
       resolve: "gatsby-source-contentful",
@@ -39,3 +42,4 @@ module.exports = {
     },
   ],
 }
+export default config;
