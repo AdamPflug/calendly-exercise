@@ -6,3 +6,4 @@ public
 dist
 .DS_Store
 TODO.md
+src/gatsby-types.d.ts
