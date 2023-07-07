@@ -82,8 +82,8 @@ interface FooterData {
 
 export default function Footer() {
   const links = [{
-    id: 'about',
-    href: '/breeds/',
+    id: 'breeds',
+    href: '/',
     text: 'Breeds'
   }];
   const meta = [{

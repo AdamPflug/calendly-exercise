@@ -9,7 +9,7 @@ export default function (props: BreedPageProps) {
     const breed = props.data.breed;
     const story = JSON.parse(breed.story.raw);
     return <Layout>
-        <p><a href="/breeds/">&lt; Home</a></p>
+        <p><a href="/">&lt; Home</a></p>
         <img src={breed.photo.url + '?w=800&h=400&fm=png&fit=fill'} alt={breed.photo.alt} />
         <h1>{breed.name}</h1>
         <p><strong>Country of Origin:</strong> {breed.origin}</p>

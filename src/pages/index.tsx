@@ -1,43 +1,25 @@
-import * as React from "react"
-import { graphql, PageProps } from "gatsby"
-import Layout from "../components/layout/layout"
-import * as sections from "../components/sections"
-import SEOHead from "../components/head"
+import * as React from "react";
+import { graphql, PageProps } from "gatsby";
+import BreedList from "../components/breeds/BreedList";
+import Layout from "../components/layout/layout";
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-type HomepageProps = PageProps<Queries.HomePageQuery>;
+type BreedIndexProps = PageProps<Queries.BreedIndexQuery>;
 
-export default function Homepage(props: HomepageProps) {
-  const { homepage } = props.data
-
-  return (
-    <Layout>
-      {homepage.blocks.map((block) => {
-        const { id, __typename, ...componentProps } = block
-        const Component = sections[__typename]
-        return <Component key={id} {...(componentProps as any)} />
-      })}
-    </Layout>
-  )
+export default function (props: BreedIndexProps) {
+    const breeds = props.data.breeds.nodes;
+    return <Layout>
+        <h1>Breeds</h1>
+        <BreedList breeds={breeds} />
+    </Layout>;
 }
-export const Head = (props: HomepageProps) => {
-  const { homepage } = props.data
-  return <SEOHead {...homepage} />
-}
+
 export const query = graphql`
-  query HomePage {
-    homepage: contentfulHomepage {
-      id
-      title
-      description
-      image {
-        id
-        url
-      }
-      blocks: content {
-        id
-        __typename
-        ...HomepageHeroContent
-      }
+    query BreedIndex {
+        breeds: allContentfulBreed {
+            nodes {
+                ...BreedListItem
+            }
+        }
     }
-  }
 `
