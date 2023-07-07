@@ -7,8 +7,6 @@ import {
   Container,
   Flex,
   Heading,
-  HomepageImage,
-  HomepageLink,
   Kicker,
   Section,
   Subhead,
