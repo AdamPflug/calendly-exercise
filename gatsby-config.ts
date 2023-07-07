@@ -24,6 +24,12 @@ const config: GatsbyConfig  = {
         host: process.env.CONTENTFUL_HOST,
       },
     },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        "pure": true
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-plugin-image",
     "gatsby-transformer-sharp",

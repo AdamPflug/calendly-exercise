@@ -1,5 +1,5 @@
 import * as React from "react"
-import "../styles.css"
+import "./styles.css"
 import { Slice } from "gatsby"
 interface LayoutProps {
   children?: React.ReactNode

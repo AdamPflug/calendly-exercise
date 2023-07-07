@@ -1,5 +1,5 @@
 import * as React from "react"
-import Layout from "../components/layout"
+import Layout from "../components/layout/layout"
 import { Container, Box, Heading, Text, Link, Flex } from "../components/ui"
 import ChevronRight from "../components/chevron-right"
 import * as styles from "../components/404.css"
