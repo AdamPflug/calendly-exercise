@@ -15,14 +15,7 @@ import {
   Text,
 } from "./ui"
 
-export interface HeroProps {
-  image?: HomepageImage
-  kicker?: string
-  h1: string
-  subhead: string
-  text: string
-  links: HomepageLink[]
-}
+export type HeroProps = Queries.HomepageHeroContentFragment;
 
 export default function Hero(props: HeroProps) {
   return (
@@ -53,7 +46,7 @@ export default function Hero(props: HeroProps) {
 }
 
 export const query = graphql`
-  fragment HomepageHeroContent on HomepageHero {
+  fragment HomepageHeroContent on ContentfulHomepageHero {
     id
     kicker
     h1: heading

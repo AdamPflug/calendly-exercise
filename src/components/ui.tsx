@@ -17,7 +17,6 @@ export const cx = (...args: (string | undefined)[]) =>
 export interface HomepageLink {
   id: string
   href: string
-  url: string
   text: string
 }
 
@@ -261,7 +260,7 @@ export function Button({
 }
 
 interface ButtonListProps extends BaseProps {
-  links: HomepageLink[]
+  links: readonly HomepageLink[]
   variant?: styles.FlexVariants
   reversed?: boolean
 }
@@ -296,7 +295,7 @@ export function CTALink(props) {
 }
 
 interface LinkListProps extends BaseProps {
-  links: HomepageLink[]
+  links: readonly HomepageLink[]
 }
 
 export function LinkList({ links = [], ...props }: LinkListProps) {

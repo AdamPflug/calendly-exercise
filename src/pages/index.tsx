@@ -13,8 +13,8 @@ export default function Homepage(props: HomepageProps) {
   return (
     <Layout>
       {homepage.blocks.map((block) => {
-        const { id, blocktype, ...componentProps } = block
-        const Component = sections[blocktype] || Fallback
+        const { id, __typename, ...componentProps } = block
+        const Component = sections[__typename] || Fallback
         return <Component key={id} {...(componentProps as any)} />
       })}
     </Layout>
@@ -26,7 +26,7 @@ export const Head = (props: HomepageProps) => {
 }
 export const query = graphql`
   query HomePage {
-    homepage {
+    homepage: contentfulHomepage {
       id
       title
       description
@@ -36,15 +36,8 @@ export const query = graphql`
       }
       blocks: content {
         id
-        blocktype
+        __typename
         ...HomepageHeroContent
-        ...HomepageFeatureListContent
-        ...HomepageCtaContent
-        ...HomepageLogoListContent
-        ...HomepageTestimonialListContent
-        ...HomepageBenefitListContent
-        ...HomepageStatListContent
-        ...HomepageProductListContent
       }
     }
   }
