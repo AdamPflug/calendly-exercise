@@ -1,19 +1,18 @@
 
-const { documentToHtmlString } = require("@contentful/rich-text-html-renderer")
-const { getGatsbyImageResolver } = require("gatsby-plugin-image/graphql-utils")
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { getGatsbyImageResolver } from "gatsby-plugin-image/graphql-utils";
+import path from "path";
 
-exports.createSchemaCustomization = async ({ actions }) => {
-
-
-  actions.createFieldExtension({
-    name: "imagePassthroughArgs",
-    extend(options) {
-      const { args } = getGatsbyImageResolver()
-      return {
-        args,
-      }
-    },
-  })
+export const createSchemaCustomization = ({ actions }) => {
+  // actions.createFieldExtension({
+  //   name: "imagePassthroughArgs",
+  //   extend(options) {
+  //     const { args } = getGatsbyImageResolver()
+  //     return {
+  //       args,
+  //     }
+  //   },
+  // })
 
   actions.createFieldExtension({
     name: "imageUrl",
@@ -53,7 +52,7 @@ exports.createSchemaCustomization = async ({ actions }) => {
     type ContentfulAsset implements Node {
       id: ID!
       alt: String @proxy(from: "title")
-      gatsbyImageData: GatsbyImageData @imagePassthroughArgs
+      gatsbyImageData: GatsbyImageData #@imagePassthroughArgs
       url: String @imageUrl
       file: JSON
       title: String
@@ -91,15 +90,15 @@ exports.createSchemaCustomization = async ({ actions }) => {
  `)
 }
 
-// exports.createPages = ({ actions }) => {
-//   const { createSlice } = actions
-//   createSlice({
-//     id: "header",
-//     component: require.resolve("./src/components/layout/header.tsx"),
-//   })
-//   createSlice({
-//     id: "footer",
-//     component: require.resolve("./src/components/layout/footer.tsx"),
-//   })
-// }
+export const createPages = ({ actions }) => {
+  const { createSlice } = actions
+  createSlice({
+    id: "header",
+    component: path.resolve("./src/components/layout/header.tsx"),
+  })
+  createSlice({
+    id: "footer",
+    component: path.resolve("./src/components/layout/footer.tsx"),
+  })
+}
       
