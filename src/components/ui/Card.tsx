@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "gatsby";
 import styled, { css } from 'styled-components';
 import TitleHero from "./TitleHero";
+import { colors, space, radii } from "../layout/theme";
 
 export type CardProps = {
     to?: string,
@@ -13,12 +14,18 @@ export type CardProps = {
 export default function Card (props: CardProps) {
     return <CardContainer to={props.to}>
         <TitleHero image={props.image} title={props.title} />
-        {props.children}
+        <CardContent>{props.children}</CardContent>
     </CardContainer>;
 };
 
 const CardContainer = styled(Link)`
-    border: 1px solid #CCC;
-    border-radius: 12px;
+    border: 1px solid ${colors.background};
+    border-radius: ${radii.large};
     overflow: hidden;
+    color: ${colors.primary};
+`;
+
+const CardContent = styled.div`
+    padding: ${space[3]};
+    text-decoration: none !important;
 `;

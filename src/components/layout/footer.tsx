@@ -1,158 +1,42 @@
 import * as React from "react"
-import {
-  Twitter,
-  Twitch,
-  Instagram,
-  Facebook,
-  Youtube,
-  GitHub,
-} from "react-feather"
-import {
-  Container,
-  Flex,
-  FlexList,
-  Box,
-  Space,
-  NavLink,
-  Text,
-  IconLink,
-  VisuallyHidden,
-  HomepageLink,
-} from "../ui"
-import BrandLogo from "../brand-logo"
+import styled from "styled-components"
 
-const socialMedia = {
-  TWITTER: {
-    url: "https://twitter.com",
-    name: "Twitter",
-    icon: <Twitter />,
-  },
-  INSTAGRAM: {
-    url: "https://instagram.com",
-    name: "Instagram",
-    icon: <Instagram />,
-  },
-  FACEBOOK: {
-    url: "https://facebook.com",
-    name: "Facebook",
-    icon: <Facebook />,
-  },
-  YOUTUBE: {
-    url: "https://youtube.com",
-    name: "YouTube",
-    icon: <Youtube />,
-  },
-  GITHUB: {
-    url: "https://github.com",
-    name: "GitHub",
-    icon: <GitHub />,
-  },
-  TWITCH: {
-    url: "https://twitch.tv",
-    name: "Twitch",
-    icon: <Twitch />,
-  },
-}
+import { Linkedin } from "react-feather"
+import { Link } from "gatsby";
 
-const getSocialURL = ({ service, username }) => {
-  const domain = socialMedia[service]?.url
-  if (!domain) return false
-  return `${domain}/${username}`
-}
+import { colors, space } from "./theme"
 
-const getSocialIcon = ({ service }) => {
-  return socialMedia[service]?.icon
-}
+const FooterContainer = styled.footer`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: ${space[3]};
+  border-top: 1px solid ${colors.primary};
+  line-height: 24px;
+  vertical-align: middle;
+`
 
-const getSocialName = ({ service }) => {
-  return socialMedia[service]?.name
-}
-
-interface FooterData {
-  layout: {
-    footer: {
-      id: string
-      links: HomepageLink[]
-      meta: { id: string; href: string; text: string }[]
-      copyright: string
-      socialLinks: { id: string; service: string; username: string }[]
-    }
+const FooterNav = styled.nav`
+margin-left: auto;
+margin-right: ${space[3]};
+  & > * {
+    margin-left: ${space[2]};
   }
-}
+`
 
 export default function Footer() {
-  const links = [{
-    id: 'breeds',
-    href: '/',
-    text: 'Breeds'
-  }];
-  const meta = [{
-    id: 'terms',
-    href: '/terms/',
-    text: 'Terms'
-  }, {
-    id: 'privacy',
-    href: '/privacy/',
-    text: 'Privacy'
-  }]
-  const socialLinks = [{
-    id: 'facebook',
-    service: 'FACEBOOK',
-    username: 'adampflug'
-  }]
-  const copyright = '© 2022 Gatsby, Inc. All rights reserved.'
-
   return (
-    <Box as="footer" paddingY={4}>
-      <Container>
-        <Flex variant="start" responsive>
-          <NavLink to="/">
-            <VisuallyHidden>Home</VisuallyHidden>
-            <BrandLogo />
-          </NavLink>
-          <Space />
-          <FlexList>
-            {socialLinks &&
-              socialLinks.map((link) => {
-                const url = getSocialURL(link)
-                return (
-                  url && (
-                    <li key={link.id}>
-                      <IconLink to={url}>
-                        <VisuallyHidden>{getSocialName(link)}</VisuallyHidden>
-                        {getSocialIcon(link)}
-                      </IconLink>
-                    </li>
-                  )
-                )
-              })}
-          </FlexList>
-        </Flex>
-        <Space size={5} />
-        <Flex variant="start" responsive>
-          <FlexList variant="start" responsive>
-            {links &&
-              links.map((link) => (
-                <li key={link.id}>
-                  <NavLink to={link.href}>{link.text}</NavLink>
-                </li>
-              ))}
-          </FlexList>
-          <Space />
-          <FlexList>
-            {meta &&
-              meta.map((link) => (
-                <li key={link.id}>
-                  <NavLink to={link.href}>
-                    <Text variant="small">{link.text}</Text>
-                  </NavLink>
-                </li>
-              ))}
-          </FlexList>
-          <Text variant="small">{copyright}</Text>
-        </Flex>
-      </Container>
-      <Space size={3} />
-    </Box>
+    <FooterContainer>
+      <div>© 2022 Gatsby, Inc. All rights reserved.</div>
+      <FooterNav>
+        <Link to="/">Terms</Link>
+        <Link to="/">Privacy</Link>
+      </FooterNav>
+      <a href="https://www.linkedin.com/in/adampflug/" target="_blank">
+        <Linkedin aria-label="LinkedIn" />
+      </a>
+    </FooterContainer>
   )
 }
