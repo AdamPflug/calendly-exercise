@@ -9,7 +9,7 @@ type BreedPageProps = PageProps<Queries.BreedPageQuery>;
 
 export default function (props: BreedPageProps) {
     const breed = props.data.breed;
-    const photo = breed.photo.url + '?w=1248&h=500&fm=png&fit=fill&f=face';
+    const photo = breed.photo.url + '?w=1248&h=600&fm=png&fit=fill&f=face';
 
 
     return <Layout>
